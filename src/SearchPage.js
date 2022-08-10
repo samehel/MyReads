@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-import FormatString from "./utils/FormatString";
-import GenerateRating from "./utils/GenerateRating";
-import ISO2LanguageConversion from "./utils/ISO2LanguageConversion";
-
 import * as BooksAPI from './BooksAPI'
 import Books from "./Books";
 
-const SearchPage = (props) => {
+const SearchPage = () => {
 
     const [bookCollection, setBookCollection] = useState([]);
     const [originalBooks, setOriginalBooks] = useState([]);
@@ -21,12 +16,12 @@ const SearchPage = (props) => {
 
     const updateBookDisplay = (searchQuery) => {
         if(searchQuery !== "") {
-            BooksAPI.search(searchQuery.trim(), 10).then((b) => {
+            BooksAPI.search(searchQuery.trim()).then((b) => {
                 b.length > 0 ? setBookCollection(b) : setBookCollection([])
             })
         } else if (searchQuery === "") {
-            clearSearchQuery();
             setBookCollection(originalBooks);
+            clearSearchQuery();
         }
     }
 
@@ -68,6 +63,7 @@ const SearchPage = (props) => {
             </div>
           </div>
           <div className="search-books-results">
+            <h2 className="db-current-shelf-title">Current books added to your shelf</h2>
             <ol className="books-grid"></ol>
           </div>
             <div className="bookshelf-books">
@@ -78,6 +74,7 @@ const SearchPage = (props) => {
                                 <Books 
                                     book={book}
                                     key={book.id}
+                                    selectedVal={book.shelf ? book.shelf : "none"}
                                 />
                             );
                         })

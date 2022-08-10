@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const FormatString = (props) => {
     const fs = () => {
-        var MR = props.book.maturityRating;
+        var MR = props.mRating;
         MR = MR.toLowerCase();
         MR = MR.replaceAll('_', " ");
         MR = MR.replaceAll(MR.charAt(0), MR.charAt(0).toUpperCase());
@@ -10,12 +10,12 @@ const FormatString = (props) => {
     }
 
     return (
-        <td>{fs()}</td>
+        fs()
     );
 }
 
 FormatString.propTypes = {
-    book: PropTypes.object.isRequired
+    mRating: PropTypes.string.isRequired
 }
 
 export default FormatString;

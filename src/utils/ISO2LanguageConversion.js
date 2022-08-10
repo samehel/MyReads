@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const ISO2LanguageConversion = (props) => {
     const convert = () => {
-        switch(props.book.language.toLowerCase()) {
+        switch(props.code.toLowerCase()) {
             case "ar":
                 return "Arabic";
                 break;
@@ -24,12 +24,12 @@ const ISO2LanguageConversion = (props) => {
     }
 
     return (
-        <td>{convert()}</td>
+        convert()
     );
 }
 
 ISO2LanguageConversion.propTypes = {
-    book: PropTypes.object.isRequired
+    code: PropTypes.string.isRequired
 }
 
 export default ISO2LanguageConversion;
