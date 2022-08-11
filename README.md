@@ -53,7 +53,7 @@ src\utils\ISO2LanguageConversion.js
  ### Thank you 
  ________________________________
  
- Thank you to the udacity team for offering a great nanodegree opprutunity and to the Egyptian Ministry of Communications and Information Technology for providing the scholorship.
+ Thank you to the udacity team for offering a great nanodegree opprutunity and to the Egyptian Ministry of Communications and Information Technology for providing the scholorship. I would also like to thank cluemediator.com for assistance in implementing the extra feature of popup boxes. 
  
 
 
