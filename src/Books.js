@@ -47,7 +47,7 @@ const Books = (props) => {
                         content={
                         <>
                             <b className='popup-heading'>{props.book.title}</b>
-                            <img className="popup-image-display" src={`${imagePopupURL}`}/>
+                            <img alt='book cover' className="popup-image-display" src={`${imagePopupURL}`}/>
                             <p className='popup-body'>
                                 <b>Title: </b>{props.book.title ? props.book.title : "No title available"}
                                 <br/>
