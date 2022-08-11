@@ -1,7 +1,7 @@
 import React from "react";
 
 /*
-  Thanks to ClueMeditator.com for the help of implementing this extra feature (not required by udacity).
+  Thanks to cluemediator.com.com for the help of implementing this extra feature (not required by udacity).
   I have also asked for permission from my EgFwd Leader if it was okay and I was granted permission since 
   it is an extra feature.
 */
