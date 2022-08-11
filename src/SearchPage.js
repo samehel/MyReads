@@ -70,13 +70,17 @@ const SearchPage = () => {
                 <ol className="books-grid">
                     {
                         bookCollection.map((book) => {
-                            return (
-                                <Books 
-                                    book={book}
-                                    key={book.id}
-                                    selectedVal={book.shelf ? book.shelf : "none"}
-                                />
-                            );
+                            if(book.shelf !== "none") {
+                                return (
+                                    <Books 
+                                        book={book}
+                                        key={book.id}
+                                        selectedVal={book.shelf ? book.shelf : "none"}
+                                        originalBooks={originalBooks} 
+                                        setOriginalBooks={setOriginalBooks}
+                                    />
+                                );
+                            }
                         })
                     }
                 </ol>

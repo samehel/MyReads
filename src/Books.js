@@ -5,24 +5,28 @@ import BookInformationPopup from './utils/BookInformationPopup';
 import FormatString from "./utils/FormatString";
 import GenerateRating from "./utils/GenerateRating";
 import ISO2LanguageConversion from "./utils/ISO2LanguageConversion";
-import HandleSelected from './HandleSelected';
+import ShelfManager from './ShelfManager';
+import * as BooksAPI from './BooksAPI';
 
 const Books = (props) => {
+
+    const handleShelf = (event) => {
+        const shelfName = event.target.value;
+        BooksAPI.update(props.book, shelfName);
+
+        if(props.originalBooks.includes(props.book)) {
+            const sortedBookArray = props.originalBooks.filter((b) => b.title !== props.book.title);
+            props.book.shelf = shelfName;
+            props.setOriginalBooks(sortedBookArray.concat(props.book));
+        } else if(!props.originalBooks.includes(props.book)) {
+            props.setOriginalBooks([...props.originalBooks, props.book]);
+        }
+    }
 
     const [toggle, setToggle] = useState(false);
 
     const togglePopup = () => {
         setToggle(!toggle);
-    }
-
-    // const handleDefaultSelectedValue = (value) => {
-    //     switch (value) {
-    //         case "currentlyReading"
-    //     }
-    // } 
-
-    const handleCurrentlyReading = (event) => {
-        console.log(event.target.value)
     }
 
     const imageURL = props.book.imageLinks && props.book.imageLinks.smallThumbnail ? props.book.imageLinks.smallThumbnail : noCoverImg
@@ -65,7 +69,11 @@ const Books = (props) => {
                         handleClose={togglePopup}
                         />
                         }
-                        <HandleSelected selectedVal={props.selectedVal}/>
+                        <ShelfManager 
+                            selectedVal={props.selectedVal} 
+                            bookObj={props.book}
+                            handleShelf={handleShelf}
+                        />
                     </div>
                     <label className="book-title">{props.book.title ? props.book.title : "No title available"}</label>
                     <br></br>
@@ -77,7 +85,9 @@ const Books = (props) => {
 
 Books.propTypes = {
     book: PropTypes.object.isRequired,
-    selectedVal: PropTypes.string.isRequired
+    selectedVal: PropTypes.string.isRequired,
+    originalBooks: PropTypes.array.isRequired,
+    setOriginalBooks: PropTypes.func.isRequired
 }
 
 export default Books;

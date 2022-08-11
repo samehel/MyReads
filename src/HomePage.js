@@ -5,14 +5,14 @@ import * as BooksAPI from './BooksAPI'
 
 const HomePage = () => {
 
-    const [currentlyReading, setCurrentlyReading] = useState([])
+    const [booksOnShelf, setBooksOnShelf] = useState([])
 
     useEffect(() => {
         let mounted = true;
         if(mounted) {
             const getBooks = async () => {
                 const res = await BooksAPI.getAll();
-                setCurrentlyReading(res);
+                setBooksOnShelf(res);
             }
             getBooks();
         }
@@ -33,13 +33,15 @@ const HomePage = () => {
                 <div className="bookshelf-books">
                 <ol className="books-grid">
                     {
-                      currentlyReading.map((book) => {
+                      booksOnShelf.map((book) => {
                         if(book.shelf === "currentlyReading") {
                           return (
                               <Books 
                                   book={book}
                                   key={book.id}
                                   selectedVal={book.shelf}
+                                  originalBooks={booksOnShelf}
+                                  setOriginalBooks={setBooksOnShelf}
                               />
                           );
                         }
@@ -54,13 +56,15 @@ const HomePage = () => {
                 <div className="bookshelf-books">
                 <ol className="books-grid">
                     {
-                      currentlyReading.map((book) => {
+                      booksOnShelf.map((book) => {
                         if(book.shelf === "wantToRead") {
                           return (
                               <Books 
                                   book={book}
                                   key={book.id}
                                   selectedVal={book.shelf}
+                                  originalBooks={booksOnShelf}
+                                  setOriginalBooks={setBooksOnShelf}
                               />
                           );
                         }
@@ -73,13 +77,15 @@ const HomePage = () => {
                 <h2 className="bookshelf-title">Read</h2>
                 <ol className="books-grid">
                     {
-                      currentlyReading.map((book) => {
+                      booksOnShelf.map((book) => {
                         if(book.shelf === "read") {
                           return (
                               <Books 
                                   book={book}
                                   key={book.id}
                                   selectedVal={book.shelf}
+                                  originalBooks={booksOnShelf}
+                                  setOriginalBooks={setBooksOnShelf}
                               />
                           );
                         }
